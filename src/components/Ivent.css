@@ -1,0 +1,13 @@
+@keyframes rotateBG {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-rotateBG {
+    animation: rotateBG 3s linear infinite;
+  }
+  
