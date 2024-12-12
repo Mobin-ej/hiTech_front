@@ -11,7 +11,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* صفحه اصلی */}
         <Route
           path="/"
           element={
