@@ -1,150 +1,194 @@
-import React from 'react'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import React, { useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 export default function Form1() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    number: '',
+    city: '',
+    job: '',
+    education: '',
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    Object.keys(formData).forEach((key) => {
+      if (!formData[key]) {
+        newErrors[key] = 'این فیلد باید پر شود';
+      }
+    });
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      const isConfirmed = window.confirm('برای ثبت نام مطمئن هستید؟');
+      if (isConfirmed) {
+        alert('فرم با موفقیت ارسال شد!');
+      }
+    }
+  };
+
   return (
-    <form>
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          {/* <h2 className="text-base/7 font-semibold text-gray-900" >مشخصات</h2> */}
-          {/* <p className="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p> */}
-
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 ml-2 sm:grid-cols-6">
-            {/* First Name */}
-            <div className="sm:col-span-3">
-              <label htmlFor="first-name" className="block text-xl font-BNazanin  font-medium text-gray-900">
-                نام
-              </label>
-              <div className="mt-2">
-                <input
-                  id="first-name"
-                  name="first-name"
-                  type="text"
-                  autoComplete="given-name"
-                  className="block w-64 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            {/* Last Name */}
-            <div className="sm:col-span-3">
-              <label htmlFor="last-name" className="block text-xl font-BNazanin font-medium text-gray-900">
-                نام خانوادگی
-              </label>
-              <div className="mt-2">
-                <input
-                  id="last-name"
-                  name="last-name"
-                  type="text"
-                  autoComplete="family-name"
-                  className="block w-64 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="sm:col-span-4">
-              <label htmlFor="email" className="block text-xl font-BNazanin font-medium text-gray-900">
-                ایمیل
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="block w-64 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-4">
-              <label htmlFor="email" className="block text-xl font-BNazanin font-medium text-gray-900 ">
-                شماره تماس
-              </label>
-              <div className="mt-2 ">
-                <input
-                  id="number"
-                  name="number"
-                  type="text"
-                  autoComplete="email"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            {/* Country */}
-            <div className="sm:col-span-3">
-              <label htmlFor="country" className="block text-xl font-BNazanin font-medium text-gray-900">
-                شهر
-              </label>
-              <div className="mt-2 grid grid-cols-1">
-                <select
-                  id="country"
-                  name="country"
-                  autoComplete="country-name"
-                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                >
-                  <option>تبریز</option>
-                  <option>تهران</option>
-                </select>
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                />
-              </div>
-            </div>
-
-            {/* Street Address */}
-            {/* <div className="col-span-full">
-              <label htmlFor="street-address" className="block text-sm/6 font-medium text-gray-900">
-                Street address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="street-address"
-                  name="street-address"
-                  type="text"
-                  autoComplete="street-address"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div> */}
-
-            {/* City */}
-            <div className="sm:col-span-3">
-              <label htmlFor="city" className="block text-xl font-BNazanin font-medium text-gray-900">
-                شغل
-              </label>
-              <div className="mt-2">
-                <input
-                  id="city"
-                  name="city"
-                  type="text"
-                  autoComplete="address-level2"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            {/* State */}
-            <div className="sm:col-span-3">
-              <label htmlFor="state" className="block text-xl font-BNazanin font-medium text-gray-900">
-                رشته تحصیلی
-              </label>
-              <div className="mt-2">
-                <input
-                  id="state"
-                  name="state"
-                  type="text"
-                  autoComplete="address-level1"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
-              </div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <form className="w-full max-w-md p-6 bg-white rounded-lg shadow-md" onSubmit={handleSubmit}>
+        <div className="space-y-6">
+          {/* First Name */}
+          <div>
+            <label htmlFor="first-name" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              نام <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="first-name"
+                name="firstName"
+                type="text"
+                autoComplete="given-name"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
             </div>
           </div>
+
+          {/* Last Name */}
+          <div>
+            <label htmlFor="last-name" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              نام خانوادگی <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="last-name"
+                name="lastName"
+                type="text"
+                autoComplete="family-name"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              ایمیل <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            </div>
+          </div>
+
+          {/* Phone Number */}
+          <div>
+            <label htmlFor="number" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              شماره تماس <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="number"
+                name="number"
+                type="text"
+                autoComplete="tel"
+                value={formData.number}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.number && <p className="text-red-500 text-sm mt-1">{errors.number}</p>}
+            </div>
+          </div>
+
+          {/* City */}
+          <div>
+            <label htmlFor="country" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              شهر <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2 relative">
+              <select
+                id="country"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 text-right appearance-none"
+              >
+                <option value="">انتخاب کنید</option>
+                <option value="تبریز">تبریز</option>
+                <option value="تهران">تهران</option>
+              </select>
+              <ChevronDownIcon
+                aria-hidden="true"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5 text-gray-500"
+              />
+              {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+            </div>
+          </div>
+
+          {/* Job */}
+          <div>
+            <label htmlFor="job" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              شغل <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="job"
+                name="job"
+                type="text"
+                value={formData.job}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.job && <p className="text-red-500 text-sm mt-1">{errors.job}</p>}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div>
+            <label htmlFor="education" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              رشته تحصیلی <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="education"
+                name="education"
+                type="text"
+                value={formData.education}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.education && <p className="text-red-500 text-sm mt-1">{errors.education}</p>}
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
+            >
+              ثبت نام
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
-  )
+      </form>
+    </div>
+  );
 }

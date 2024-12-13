@@ -5,7 +5,7 @@ import Bnr from './components/Bnr';
 import Ivent from './components/Ivent';
 import Sbt from './components/Sbt';
 import Footer from './components/Footer';
-import Form1 from './components/Form1'; // ایمپورت کامپوننت Form1
+import Form1 from './components/Form1';
 
 function App() {
   return (
@@ -17,11 +17,11 @@ function App() {
             <div className="w-screen h-screen flex flex-col items-center">
               <Navbar />
               <div className="flex-grow flex mt-32 w-screen justify-center">
-                <Bnr /> <div className="flex-grow flex w-screen justify-center mt-10">
-                <Ivent />
+                <Bnr />
+                <div className="flex-grow flex w-screen justify-center mt-10">
+                  <Ivent />
+                </div>
               </div>
-              </div>
-             
               <div className="mt-10 mb-10">
                 <Sbt />
               </div>
@@ -29,7 +29,6 @@ function App() {
             </div>
           }
         />
-        {/* صفحه Form1 */}
         <Route path="/form1" element={<Form1 />} />
       </Routes>
     </Router>
