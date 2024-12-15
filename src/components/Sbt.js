@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // برای هدایت کاربر
+import { useNavigate } from 'react-router-dom'; 
 
 const Sbt = () => {
   const navigate = useNavigate(); // تابع هدایت
@@ -15,12 +15,11 @@ const Sbt = () => {
   return (
     <div className="relative">
       {isLoading ? (
-        // انیمیشن لودینگ
         <div className="flex items-center justify-center h-10">
           <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
         </div>
       ) : (
-        // دکمه ثبت نام
+     
         <button
           onClick={handleClick}
           className="relative inline-block px-10 font-BNazanin ml-4 py-2 text-[#4A628A] transition-all duration-300 border-2 bg-[#B9E5E8] rounded-lg overflow-hidden group hover:bg-sky-400 hover:text-white hover:shadow-[0px_2px_0px_2px_rgba(13,59,102,1)] active:scale-90"

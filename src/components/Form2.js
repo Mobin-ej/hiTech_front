@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import Navbar from './Navbar';
 
-export default function Form1() {
+export default function Form2() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,6 +11,7 @@ export default function Form1() {
     city: '',
     job: '',
     education: '',
+    residence: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -31,7 +32,7 @@ export default function Form1() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const isConfirmed = window.confirm('برای ثبت نام مطمئن هستید؟');
+      const isConfirmed = window.confirm('برای عضویت مطمئن هستید؟');
       if (isConfirmed) {
         alert('فرم با موفقیت ارسال شد!');
       }
@@ -39,7 +40,6 @@ export default function Form1() {
   };
 
   return (
-    
     <div className="flex items-center justify-center min-h-screen mt-24 ">
       <Navbar />
       <form className="w-full max-w-md p-6 bg-white rounded-lg shadow-md" onSubmit={handleSubmit}>
@@ -181,13 +181,31 @@ export default function Form1() {
             </div>
           </div>
 
+          {/* Residence */}
+          <div>
+            <label htmlFor="residence" className="block text-xl font-BNazanin font-medium text-gray-900 text-right">
+              محل سکونت <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="residence"
+                name="residence"
+                type="text"
+                value={formData.residence}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.residence && <p className="text-red-500 text-sm mt-1">{errors.residence}</p>}
+            </div>
+          </div>
+
           {/* Submit Button */}
           <div>
             <button
               type="submit"
               className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
-              ثبت نام
+                عضویت
             </button>
           </div>
         </div>
