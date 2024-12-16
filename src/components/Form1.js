@@ -14,13 +14,14 @@ export default function Form1() {
   });
 
   const [errors, setErrors] = useState({});
+  const id = localStorage.getItem('id');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
@@ -33,13 +34,37 @@ export default function Form1() {
     if (Object.keys(newErrors).length === 0) {
       const isConfirmed = window.confirm('برای ثبت نام مطمئن هستید؟');
       if (isConfirmed) {
-        alert('فرم با موفقیت ارسال شد!');
+        try {
+          const response = await fetch(`http://185.208.175.233:5001/register_event/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.firstName,
+              last_name: formData.lastName,
+              email: formData.email,
+              phone_number: formData.number,
+              city:formData.city,
+              job: formData.job,
+              education: formData.education,
+            }),
+          });
+
+          if (response.ok) {
+            alert('فرم با موفقیت ارسال شد!');
+          } else {
+            alert('خطا در ارسال فرم');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('خطا در ارسال فرم');
+        }
       }
     }
   };
 
   return (
-    
     <div className="flex items-center justify-center min-h-screen mt-24 ">
       <Navbar />
       <form className="w-full max-w-md p-6 bg-white rounded-lg shadow-md" onSubmit={handleSubmit}>

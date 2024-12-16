@@ -6,10 +6,10 @@ const Sbt = () => {
   const [isLoading, setIsLoading] = useState(false); // وضعیت لودینگ
 
   const handleClick = () => {
-    setIsLoading(true); // فعال کردن لودینگ
+    setIsLoading(true); 
     setTimeout(() => {
-      navigate('/form1'); // هدایت به مسیر /form1 بعد از 3 ثانیه
-    }, 3000);
+      navigate('/form1'); 
+    }, 1000);
   };
 
   return (
