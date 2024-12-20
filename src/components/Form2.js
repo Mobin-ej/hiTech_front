@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 export default function Form2() {
-  const navigate = useNavigate(); // استفاده از useNavigate برای هدایت
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -48,7 +47,7 @@ export default function Form2() {
             email: formData.email,
             password: formData.password,
             phone_number: formData.number,
-            city :formData.city,
+            city: formData.city,
             home_address: formData.residence,
             education: formData.education,
             job: formData.job,
@@ -76,7 +75,7 @@ export default function Form2() {
         onSubmit={handleSubmit}
       >
         <div className="space-y-6">
-          {/* First Name */}
+          {/* فیلد نام */}
           <div>
             <label
               htmlFor="first-name"
@@ -89,7 +88,6 @@ export default function Form2() {
                 id="first-name"
                 name="firstName"
                 type="text"
-                autoComplete="given-name"
                 value={formData.firstName}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
@@ -100,7 +98,7 @@ export default function Form2() {
             </div>
           </div>
 
-          {/* Last Name */}
+          {/* فیلد نام خانوادگی */}
           <div>
             <label
               htmlFor="last-name"
@@ -113,7 +111,6 @@ export default function Form2() {
                 id="last-name"
                 name="lastName"
                 type="text"
-                autoComplete="family-name"
                 value={formData.lastName}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
@@ -124,7 +121,7 @@ export default function Form2() {
             </div>
           </div>
 
-          {/* Email */}
+          {/* فیلد ایمیل */}
           <div>
             <label
               htmlFor="email"
@@ -137,7 +134,6 @@ export default function Form2() {
                 id="email"
                 name="email"
                 type="email"
-                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
@@ -148,7 +144,7 @@ export default function Form2() {
             </div>
           </div>
 
-          {/* Phone Number */}
+          {/* فیلد شماره تلفن */}
           <div>
             <label
               htmlFor="number"
@@ -161,7 +157,6 @@ export default function Form2() {
                 id="number"
                 name="number"
                 type="tel"
-                autoComplete="tel"
                 value={formData.number}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
@@ -288,13 +283,20 @@ export default function Form2() {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div>
+           {/* دکمه ورود و عضویت */}
+           <div className="flex justify-between">
             <button
               type="submit"
-              className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
+              className="w-[48%] py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
               عضویت
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/login')}
+              className="w-[48%] py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
+            >
+              ورود
             </button>
           </div>
         </div>

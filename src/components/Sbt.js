@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 const Sbt = () => {
-  const navigate = useNavigate(); // تابع هدایت
-  const [isLoading, setIsLoading] = useState(false); // وضعیت لودینگ
+  const navigate = useNavigate(); 
+  const [isLoading, setIsLoading] = useState(false); 
 
   const handleClick = () => {
     setIsLoading(true); 

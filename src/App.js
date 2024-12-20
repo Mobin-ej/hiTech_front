@@ -6,9 +6,9 @@ import Ivent from './components/Ivent';
 import Sbt from './components/Sbt';
 import Footer from './components/Footer';
 import Form1 from './components/Form1';
-import Form2 from './components/Form2'; // اضافه کردن Form2
+import Form2 from './components/Form2';
 import Login from './components/Login';
-
+import Information from './components/Information';
 
 function App() {
   return (
@@ -34,7 +34,8 @@ function App() {
         />
         <Route path="/form1" element={<Form1 />} />
         <Route path="/form2" element={<Form2 />} /> 
-        <Route path='/login' element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/information' element={<Information />} />
       </Routes>
     </Router>
   );
