@@ -24,11 +24,17 @@ const Navbar = () => {
     navigate('/form2');
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  /*
   const handleLogout = () => {
     localStorage.removeItem('access_token'); 
     setIsLoggedIn(false); 
     navigate('/'); 
   };
+  */
 
   return (
     <Disclosure
@@ -48,19 +54,25 @@ const Navbar = () => {
         ) : (
           <div className="flex items-center">
             <Profile />
+            {/**
             <button
               onClick={handleLogout}
               className="ml-4 px-3 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
             >
               خروج
             </button>
+            */}
           </div>
         )}
 
         <p className="font-BNazanin text-xl text-[#4A628A]">دورهمی هایتک</p>
         <div className="flex mr-4 items-center justify-end sm:items-stretch sm:justify-start">
           <div className="flex-shrink-0">
-            <img src="./hitech1.jpg" className="h-14 rounded-full w-auto" />
+            <img 
+              src="./hitech1.jpg" 
+              className="h-14 rounded-full w-auto cursor-pointer" 
+              onClick={handleLogoClick} 
+            />
           </div>
         </div>
       </div>

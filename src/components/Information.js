@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Information = () => {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -42,6 +45,11 @@ const Information = () => {
     fetchProfile();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('access_token'); 
+    navigate('/');
+  };
+
   if (loading) {
     return <div>در حال بارگذاری...</div>;
   }
@@ -51,11 +59,67 @@ const Information = () => {
   }
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      backgroundColor: '#f4f4f4',
+      position: 'relative',
+    }}>
+      <Navbar />
       {profileData ? (
-        <div>
-          <h2>اطلاعات کاربری:</h2>
-          <pre>{JSON.stringify(profileData, null, 2)}</pre>
+        <div style={{
+          width: '400px',
+          padding: '20px',
+          backgroundColor: '#fff',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          borderRadius: '10px',
+          textAlign: 'right',
+          direction: 'rtl',
+          position: 'relative',
+        }}>
+          <h2 style={{ marginBottom: '20px', color: '#333' }}>اطلاعات کاربری:</h2>
+          <p><strong>نام:</strong> {profileData.name}</p>
+          <p><strong>نام خانوادگی:</strong> {profileData.last_name}</p>
+          <p><strong>شغل:</strong> {profileData.job}</p>
+          <p><strong>شهر:</strong> {profileData.city}</p>
+          <p><strong>شماره تلفن:</strong> {profileData.phone_number}</p>
+          <p><strong>آدرس منزل:</strong> {profileData.home_address}</p>
+          <p><strong>تحصیلات:</strong> {profileData.education}</p>
+          <p><strong>ایمیل:</strong> {profileData.email}</p>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: '20px',
+          }}>
+            <button 
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              ویرایش
+            </button>
+            <button 
+              onClick={handleLogout}
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#dc3545',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              خروج
+            </button>
+          </div>
         </div>
       ) : (
         <div>اطلاعاتی برای نمایش وجود ندارد.</div>
