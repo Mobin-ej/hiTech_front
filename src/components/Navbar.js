@@ -28,13 +28,11 @@ const Navbar = () => {
     navigate('/');
   };
 
-  /*
   const handleLogout = () => {
     localStorage.removeItem('access_token'); 
     setIsLoggedIn(false); 
     navigate('/'); 
   };
-  */
 
   return (
     <Disclosure
@@ -54,14 +52,14 @@ const Navbar = () => {
         ) : (
           <div className="flex items-center">
             <Profile />
-            {/**
+            
             <button
               onClick={handleLogout}
-              className="ml-4 px-3 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
+              className="ml-4 px-3 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90 hidden sm:block"
             >
               خروج
             </button>
-            */}
+           
           </div>
         )}
 
