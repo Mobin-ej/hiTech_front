@@ -8,7 +8,7 @@ const Information = () => {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [attendanceCount, setAttendanceCount] = useState(0);
+  const [attendanceCount, setAttendanceCount] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,14 +38,14 @@ const Information = () => {
         setError(err.message);
       } finally {
         setLoading(false);
-      }             
+      }
     };
 
     fetchProfile();
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('access_token'); 
+    localStorage.removeItem('access_token');
     navigate('/');
   };
 
@@ -55,22 +55,21 @@ const Information = () => {
 
   useEffect(() => {
     const fetchEventData = async () => {
-        try {
-            const response = await fetch(`http://185.208.175.233:5001/api/latest-event`);
-            if (response.ok) {
-                const data = await response.json();
-                setEventId(data)
-            } else {
-                console.error('Error fetching event data');
-            }
-        } catch (error) {
-            console.error('Error:', error);
+      try {
+        const response = await fetch(`http://185.208.175.233:5001/api/latest-event`);
+        if (response.ok) {
+          const data = await response.json();
+          setEventId(data);
+        } else {
+          console.error('Error fetching event data');
         }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     fetchEventData();
   }, []);
-
 
   const handleRegisterAttendance = async () => {
     if (!eventId) {
@@ -113,6 +112,15 @@ const Information = () => {
     return <div style={{ color: 'red' }}>خطا: {error}</div>;
   }
 
+  const fontStyle = {
+    '@font-face': {
+      fontFamily: 'BNazanin',
+      src: `url('/fonts/BNazanin.ttf') format('truetype')`,
+    },
+    fontFamily: 'BNazanin, Arial, sans-serif',
+  };
+
+
   return (
     <div style={{
       display: 'flex',
@@ -121,7 +129,7 @@ const Information = () => {
       alignItems: 'center',
       height: '100vh',
       position: 'relative',
-      flexWrap: 'wrap', // Ensures the layout wraps on smaller screens
+      flexWrap: 'wrap',
     }}>
       <Navbar />
       <div style={{
@@ -129,8 +137,8 @@ const Information = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '20px', // Adds space between sections in mobile view
-        width: '100%', // Ensure it takes full width on mobile
+        marginBottom: '20px',
+        width: '100%',
       }}>
         {profileData ? (
           <div style={{
@@ -141,7 +149,7 @@ const Information = () => {
             borderRadius: '10px',
             textAlign: 'right',
             direction: 'rtl',
-            marginTop: '100px', // Add top margin for mobile view
+            marginTop: '100px',
           }}>
             <h2 style={{ marginBottom: '20px', color: '#333' }}>اطلاعات کاربری:</h2>
             <p><strong>نام:</strong> {profileData.name}</p>
@@ -157,7 +165,7 @@ const Information = () => {
               justifyContent: 'space-between',
               marginTop: '20px',
             }}>
-              <button 
+              <button
                 onClick={handleEdit}
                 style={{
                   padding: '10px 20px',
@@ -170,7 +178,7 @@ const Information = () => {
               >
                 ویرایش
               </button>
-              <button 
+              <button
                 onClick={handleLogout}
                 style={{
                   padding: '10px 20px',
@@ -189,28 +197,31 @@ const Information = () => {
           <div>اطلاعاتی برای نمایش وجود ندارد.</div>
         )}
       </div>
-      
-      {/* Ivent component */}
+
       <div style={{
         flex: '1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%', // Ensures it takes full width on mobile
+        width: '100%',
+        marginTop: '120px', // اضافه کردن فاصله از بالا
+
       }}>
         <Ivent onEventIdChange={setEventId} />
-        <select 
-          value={attendanceCount} 
-          onChange={(e) => setAttendanceCount(Number(e.target.value))} 
+        <select
+          value={attendanceCount}
+          onChange={(e) => setAttendanceCount(Number(e.target.value))}
           style={{
             margin: '20px 0',
             padding: '10px',
-            fontSize: '16px',
+            fontSize: '19px',
             borderRadius: '5px',
             border: '1px solid #ccc',
+            ...fontStyle, // اعمال استایل فونت
           }}
         >
+          <option value="" disabled>تعداد مهمان</option>
           <option value={0}>0</option>
           <option value={1}>1</option>
           <option value={2}>2</option>
@@ -218,9 +229,9 @@ const Information = () => {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-        <button 
+        <button
           onClick={handleRegisterAttendance}
-          className="ml-4 px-6 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
+          className="ml-4 mr-4 px-6 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
           style={{ marginTop: '20px' }}
         >
           ثبت نام

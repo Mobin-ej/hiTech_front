@@ -58,7 +58,7 @@ const Edit = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      backgroundColor: '#f4f4f4',
+    
     }}>
       <h2 style={{ marginBottom: '20px' }}>ویرایش اطلاعات</h2>
       <form onSubmit={handleSave} style={{

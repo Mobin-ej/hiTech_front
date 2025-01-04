@@ -67,7 +67,7 @@ const Navbar = () => {
         <div className="flex mr-4 items-center justify-end sm:items-stretch sm:justify-start">
           <div className="flex-shrink-0">
             <img 
-              src="./hitech1.jpg" 
+              src="./hitech2.jpg" 
               className="h-14 rounded-full w-auto cursor-pointer" 
               onClick={handleLogoClick} 
             />
