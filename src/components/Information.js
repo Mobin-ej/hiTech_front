@@ -150,8 +150,10 @@ const Information = () => {
             textAlign: 'right',
             direction: 'rtl',
             marginTop: '100px',
+            
           }}>
-            <h2 style={{ marginBottom: '20px', color: '#333' }}>اطلاعات کاربری:</h2>
+            <h2 style={{  fontSize: '22px', 
+                  ...fontStyle, marginBottom: '20px', color: '#333' }}>اطلاعات کاربری:</h2>
             <p><strong>نام:</strong> {profileData.name}</p>
             <p><strong>نام خانوادگی:</strong> {profileData.last_name}</p>
             <p><strong>شغل:</strong> {profileData.job}</p>
@@ -164,6 +166,7 @@ const Information = () => {
               display: 'flex',
               justifyContent: 'space-between',
               marginTop: '20px',
+              
             }}>
               <button
                 onClick={handleEdit}
@@ -174,6 +177,8 @@ const Information = () => {
                   border: 'none',
                   borderRadius: '5px',
                   cursor: 'pointer',
+                  fontSize: '18px',
+                  ...fontStyle,
                 }}
               >
                 ویرایش
@@ -187,6 +192,8 @@ const Information = () => {
                   border: 'none',
                   borderRadius: '5px',
                   cursor: 'pointer',
+                  fontSize: '18px',
+                  ...fontStyle,
                 }}
               >
                 خروج
