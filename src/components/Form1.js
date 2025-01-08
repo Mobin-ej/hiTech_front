@@ -75,13 +75,13 @@ export default function Form1() {
         form className = "w-full max-w-md p-6 bg-white rounded-lg shadow-md"
         onSubmit = { handleSubmit } >
         <
-        div className = "space-y-6" > { /* First Name */ } <
+        div className = "space-y-6" > { " " } { /* First Name */ } { " " } <
         div >
         <
         label htmlFor = "first-name"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        نام < span className = "text-red-500" > * < /span> <
-        /label> <
+        نام < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "first-name"
@@ -91,21 +91,20 @@ export default function Form1() {
         value = { formData.firstName }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.firstName && ( <
-                p className = "text-red-500 text-sm mt-1" > { errors.firstName } < /p>
+                p className = "text-red-500 text-sm mt-1" > { " " } { errors.firstName } { " " } <
+                /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Last Name */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Last Name */ } { " " } <
         div >
         <
         label htmlFor = "last-name"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        نام خانوادگی < span className = "text-red-500" > * < /span> <
-        /label> <
+        نام خانوادگی < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "last-name"
@@ -115,21 +114,19 @@ export default function Form1() {
         value = { formData.lastName }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.lastName && ( <
                 p className = "text-red-500 text-sm mt-1" > { errors.lastName } < /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Email */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Email */ } { " " } <
         div >
         <
         label htmlFor = "email"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        ایمیل < span className = "text-red-500" > * < /span> <
-        /label> <
+        ایمیل < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "email"
@@ -139,21 +136,19 @@ export default function Form1() {
         value = { formData.email }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.email && ( <
                 p className = "text-red-500 text-sm mt-1" > { errors.email } < /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Phone Number */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Phone Number */ } { " " } <
         div >
         <
         label htmlFor = "number"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        شماره تماس < span className = "text-red-500" > * < /span> <
-        /label> <
+        شماره تماس < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "number"
@@ -163,21 +158,19 @@ export default function Form1() {
         value = { formData.number }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.number && ( <
                 p className = "text-red-500 text-sm mt-1" > { errors.number } < /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* City */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* City */ } { " " } <
         div >
         <
         label htmlFor = "country"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        شهر < span className = "text-red-500" > * < /span> <
-        /label> <
+        شهر < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2 relative" >
         <
         select id = "country"
@@ -186,26 +179,22 @@ export default function Form1() {
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 text-right appearance-none" >
         <
-        option value = "" > انتخاب کنید < /option> <
-        option value = "تبریز" > تبریز < /option> <
-        option value = "تهران" > تهران < /option> <
-        /select>
-
-        {
+        option value = "" > انتخاب کنید < /option>{" "} <
+        option value = "تبریز" > تبریز < /option>{" "} <
+        option value = "تهران" > تهران < /option>{" "} <
+        /select>{" "} {
             errors.city && ( <
                 p className = "text-red-500 text-sm mt-1" > { errors.city } < /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Job */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Job */ } { " " } <
         div >
         <
         label htmlFor = "job"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        شغل < span className = "text-red-500" > * < /span> <
-        /label> <
+        شغل < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "job"
@@ -214,21 +203,19 @@ export default function Form1() {
         value = { formData.job }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.job && ( <
                 p className = "text-red-500 text-sm mt-1" > { errors.job } < /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Education */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Education */ } { " " } <
         div >
         <
         label htmlFor = "education"
         className = "block text-xl font-BNazanin font-medium text-gray-900 text-right" >
-        رشته تحصیلی < span className = "text-red-500" > * < /span> <
-        /label> <
+        رشته تحصیلی < span className = "text-red-500" > * < /span>{" "} <
+        /label>{" "} <
         div className = "mt-2" >
         <
         input id = "education"
@@ -237,24 +224,23 @@ export default function Form1() {
         value = { formData.education }
         onChange = { handleChange }
         className = "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right" /
-        > {
+        > { " " } {
             errors.education && ( <
-                p className = "text-red-500 text-sm mt-1" > { errors.education } < /p>
+                p className = "text-red-500 text-sm mt-1" > { " " } { errors.education } { " " } <
+                /p>
             )
-        } <
-        /div> <
-        /div>
-
-        { /* Submit Button */ } <
+        } { " " } <
+        /div>{" "} <
+        /div>{" "} { /* Submit Button */ } { " " } <
         div >
         <
         button type = "submit"
         className = "w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin" >
-        ثبت نام <
-        /button> <
-        /div> <
-        /div> <
-        /form> <
+        ثبت نام { " " } <
+        /button>{" "} <
+        /div>{" "} <
+        /div>{" "} <
+        /form>{" "} <
         /div>
     );
 }
