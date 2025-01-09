@@ -82,6 +82,7 @@
 // export default Login;
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Login = () => {
   const emailRef = useRef();
@@ -112,7 +113,8 @@ const Login = () => {
 
       localStorage.setItem('access_token', data.access_token);
 
-      navigate('/');
+      // هدایت به صفحه Information پس از لاگین موفق
+      navigate('/information');
     } catch (error) {
       console.error('Login error:', error);
     }
@@ -120,6 +122,7 @@ const Login = () => {
 
   return (
     <div className="max-w-xs mx-auto bg-gradient-to-b from-white to-gray-100 rounded-3xl p-6 border-4 border-white shadow-lg m-5 mt-40">
+      <Navbar />
       <div className="text-center font-black text-2xl text-[rgb(158,183,214)]">Login</div>
       <form className="mt-5" onSubmit={handleSubmit}>
         <input
@@ -138,9 +141,9 @@ const Login = () => {
           type="password"
           className="w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[rgb(157,143,128)]"
         />
-        <span className="block mt-3 ml-3 text-xs text-blue-500">
+        {/* <span className="block mt-3 ml-3 text-xs text-blue-500">
           <a href="#">Forgot Password?</a>
-        </span>
+        </span> */}
         <input
           value="Login"
           type="submit"

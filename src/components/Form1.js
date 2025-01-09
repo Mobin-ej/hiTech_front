@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Navbar from "./Navbar";
 
 export default function Form1() {
@@ -14,6 +13,7 @@ export default function Form1() {
   });
 
   const [errors, setErrors] = useState({});
+  const [qrCode, setQrCode] = useState(""); // اضافه کردن وضعیت برای ذخیره کیو آر کد
   const id = localStorage.getItem("id");
 
   const handleChange = (e) => {
@@ -56,12 +56,15 @@ export default function Form1() {
           );
 
           if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            setQrCode(data.qr_code_path); // ذخیره مسیر کیو آر کد
             alert("فرم با موفقیت ارسال شد!");
           } else {
             alert("خطا در ارسال فرم");
           }
         } catch (error) {
-          console.error("Error:", error);
+          console.log("Error:", error);
           alert("خطا در ارسال فرم");
         }
       }
@@ -69,22 +72,21 @@ export default function Form1() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen mt-24 ">
+    <div className="flex items-center justify-center min-h-screen mt-24">
       <Navbar />
       <form
         className="w-full max-w-md p-6 bg-white rounded-lg shadow-md"
         onSubmit={handleSubmit}
       >
         <div className="space-y-6">
-          {" "}
-          {/* First Name */}{" "}
+          {/* First Name */}
           <div>
             <label
               htmlFor="first-name"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               نام <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="first-name"
@@ -94,23 +96,22 @@ export default function Form1() {
                 value={formData.firstName}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.firstName && (
                 <p className="text-red-500 text-sm mt-1">
-                  {" "}
-                  {errors.firstName}{" "}
+                  {errors.firstName}
                 </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Last Name */}{" "}
+              )}
+            </div>
+          </div>
+          {/* Last Name */}
           <div>
             <label
               htmlFor="last-name"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               نام خانوادگی <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="last-name"
@@ -120,20 +121,22 @@ export default function Form1() {
                 value={formData.lastName}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.lastName && (
-                <p className="text-red-500 text-sm mt-1"> {errors.lastName} </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Email */}{" "}
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.lastName}
+                </p>
+              )}
+            </div>
+          </div>
+          {/* Email */}
           <div>
             <label
               htmlFor="email"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               ایمیل <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="email"
@@ -143,20 +146,20 @@ export default function Form1() {
                 value={formData.email}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1"> {errors.email} </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Phone Number */}{" "}
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+          </div>
+          {/* Phone Number */}
           <div>
             <label
               htmlFor="number"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               شماره تماس <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="number"
@@ -166,45 +169,45 @@ export default function Form1() {
                 value={formData.number}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.number && (
-                <p className="text-red-500 text-sm mt-1"> {errors.number} </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* City */}{" "}
+                <p className="text-red-500 text-sm mt-1">{errors.number}</p>
+              )}
+            </div>
+          </div>
+          {/* City */}
           <div>
             <label
-              htmlFor="country"
+              htmlFor="city"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               شهر <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
-            <div className="mt-2 relative">
+            </label>
+            <div className="mt-2">
               <select
-                id="country"
+                id="city"
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 text-right appearance-none"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 text-right"
               >
-                <option value=""> انتخاب کنید </option>{" "}
-                <option value="تبریز"> تبریز </option>{" "}
-                <option value="تهران"> تهران </option>{" "}
-              </select>{" "}
+                <option value="">انتخاب کنید</option>
+                <option value="تبریز">تبریز</option>
+                <option value="تهران">تهران</option>
+              </select>
               {errors.city && (
-                <p className="text-red-500 text-sm mt-1"> {errors.city} </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Job */}{" "}
+                <p className="text-red-500 text-sm mt-1">{errors.city}</p>
+              )}
+            </div>
+          </div>
+          {/* Job */}
           <div>
             <label
               htmlFor="job"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               شغل <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="job"
@@ -213,20 +216,20 @@ export default function Form1() {
                 value={formData.job}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.job && (
-                <p className="text-red-500 text-sm mt-1"> {errors.job} </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Education */}{" "}
+                <p className="text-red-500 text-sm mt-1">{errors.job}</p>
+              )}
+            </div>
+          </div>
+          {/* Education */}
           <div>
             <label
               htmlFor="education"
               className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
             >
               رشته تحصیلی <span className="text-red-500"> * </span>{" "}
-            </label>{" "}
+            </label>
             <div className="mt-2">
               <input
                 id="education"
@@ -235,26 +238,35 @@ export default function Form1() {
                 value={formData.education}
                 onChange={handleChange}
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />{" "}
+              />
               {errors.education && (
-                <p className="text-red-500 text-sm mt-1">
-                  {" "}
-                  {errors.education}{" "}
-                </p>
-              )}{" "}
-            </div>{" "}
-          </div>{" "}
-          {/* Submit Button */}{" "}
+                <p className="text-red-500 text-sm mt-1">{errors.education}</p>
+              )}
+            </div>
+          </div>
+          {/* Submit Button */}
           <div>
             <button
               type="submit"
               className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
-              ثبت نام{" "}
-            </button>{" "}
-          </div>{" "}
-        </div>{" "}
-      </form>{" "}
+              ثبت نام
+            </button>
+          </div>
+        </div>
+      </form>
+
+      {/* نمایش کیو آر کد بعد از ثبت نام موفق */}
+      {qrCode && (
+        <div className="mt-8">
+          <h2 className="text-center text-xl font-BNazanin">کد QR شما:</h2>
+          <div className="flex justify-center mt-4">
+            <img src={`http://185.208.175.233:5001/${qrCode}`} alt="QR Code" className="w-48 h-48" />
+          </div>
+          <h2 >لطفا این Qrcode را ذخیره کنید</h2>
+
+        </div>
+      )}
     </div>
   );
 }

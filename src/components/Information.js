@@ -8,8 +8,10 @@ const Information = () => {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [attendanceCount, setAttendanceCount] = useState("");
+  const [attendanceCount, setAttendanceCount] = useState(0);
+  const [qrCode, setQrCode] = useState(""); // اضافه کردن وضعیت برای ذخیره کیو آر کد
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -67,6 +69,7 @@ const Information = () => {
         if (response.ok) {
           const data = await response.json();
           setEventId(data.id);
+          setQrCode(data.qr_code_path); // ذخیره مسیر کیو آر کد
         } else {
           console.error("Error fetching event data");
         }
@@ -105,11 +108,14 @@ const Information = () => {
       );
 
       if (!response.ok) {
+        console.log(response);
         throw new Error(
           `خطا در ثبت اطلاعات: ${response.statusText} (کد: ${response.status})`
         );
       }
-
+      const data = await response.json();
+      console.log(data);
+      setQrCode(data.qr_code_path)
       alert("حضور با موفقیت ثبت شد!");
     } catch (err) {
       alert(`خطا: ${err.message}`);
@@ -288,6 +294,36 @@ const Information = () => {
           ثبت نام
         </button>
       </div>
+
+      {/* نمایش کیو آر کد */}
+      {qrCode && (
+        <div
+          style={{
+            flex: "1",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            marginTop: "20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "22px",
+              marginBottom: "20px",
+              color: "#333",
+              ...fontStyle,
+            }}
+          >
+            کیو آر کد رویداد:
+          </h2>
+          <img
+            src={`http://185.208.175.233:5001/${qrCode}`}
+            alt="QR Code"
+            style={{ width: "200px", height: "200px" }}
+          />
+        </div>
+      )}
     </div>
   );
 };
