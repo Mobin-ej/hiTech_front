@@ -13,7 +13,8 @@ export default function Form1() {
   });
 
   const [errors, setErrors] = useState({});
-  const [qrCode, setQrCode] = useState(""); // اضافه کردن وضعیت برای ذخیره کیو آر کد
+  const [qrCode, setQrCode] = useState(""); // ذخیره مسیر کیو آر کد
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // وضعیت نمایش فرم
   const id = localStorage.getItem("id");
 
   const handleChange = (e) => {
@@ -59,6 +60,7 @@ export default function Form1() {
             const data = await response.json();
             console.log(data);
             setQrCode(data.qr_code_path); // ذخیره مسیر کیو آر کد
+            setIsFormSubmitted(true); // فرم ارسال شد و کیو آر کد نمایش داده شود
             alert("فرم با موفقیت ارسال شد!");
           } else {
             alert("خطا در ارسال فرم");
@@ -74,36 +76,37 @@ export default function Form1() {
   return (
     <div className="flex items-center justify-center min-h-screen mt-24">
       <Navbar />
-      <form
-        className="w-full max-w-md p-6 bg-white rounded-lg shadow-md"
-        onSubmit={handleSubmit}
-      >
-        <div className="space-y-6">
-          {/* First Name */}
-          <div>
-            <label
-              htmlFor="first-name"
-              className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
-            >
-              نام <span className="text-red-500"> * </span>{" "}
-            </label>
-            <div className="mt-2">
-              <input
-                id="first-name"
-                name="firstName"
-                type="text"
-                autoComplete="given-name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
-              />
-              {errors.firstName && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.firstName}
-                </p>
-              )}
+      {!isFormSubmitted ? (
+        <form
+          className="w-full max-w-md p-6 bg-white rounded-lg shadow-md"
+          onSubmit={handleSubmit}
+        >
+          <div className="space-y-6">
+            {/* First Name */}
+            <div>
+              <label
+                htmlFor="first-name"
+                className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
+              >
+                نام <span className="text-red-500"> * </span>{" "}
+              </label>
+              <div className="mt-2">
+                <input
+                  id="first-name"
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+                />
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.firstName}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
           {/* Last Name */}
           <div>
             <label
@@ -246,25 +249,26 @@ export default function Form1() {
           </div>
           {/* Submit Button */}
           <div>
-            <button
-              type="submit"
-              className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
-            >
-              ثبت نام
-            </button>
+              <button
+                type="submit"
+                className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
+              >
+                ثبت نام
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
-
-      {/* نمایش کیو آر کد بعد از ثبت نام موفق */}
-      {qrCode && (
-        <div className="mt-8">
-          <h2 className="text-center text-xl font-BNazanin">کد QR شما:</h2>
+        </form>
+      ) : (
+        <div className="text-center mt-8">
+          <h2 className="text-xl font-BNazanin">کد QR شما:</h2>
           <div className="flex justify-center mt-4">
-            <img src={`http://185.208.175.233:5001/${qrCode}`} alt="QR Code" className="w-48 h-48" />
+            <img
+              src={`http://185.208.175.233:5001/${qrCode}`}
+              alt="QR Code"
+              className="w-48 h-48"
+            />
           </div>
-          <h2 >لطفا این Qrcode را ذخیره کنید</h2>
-
+          <h2 className="mt-4 font-BNazanin">لطفا این Qrcode را ذخیره کنید</h2>
         </div>
       )}
     </div>

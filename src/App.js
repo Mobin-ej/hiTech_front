@@ -20,9 +20,9 @@ function App() {
           element={
             <div className="w-screen h-screen flex flex-col items-center justify-center">
               <Navbar />
-              <div className="flex-grow flex flex-col md:flex-row mt-48 sm:mt-32 w-screen justify-center items-center">
+              <div className="flex-grow flex flex-col md:flex-row mt-60 sm:mt-32 w-screen justify-center items-center">
                 <Bnr />
-                <div className="flex-grow flex w-screen justify-center mr-5 mt-5">
+                <div className="flex-grow flex w-screen justify-center md:mr-7 mt-5">
                   <Ivent />
                 </div>
               </div>

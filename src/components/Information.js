@@ -11,7 +11,6 @@ const Information = () => {
   const [attendanceCount, setAttendanceCount] = useState(0);
   const [qrCode, setQrCode] = useState(""); // اضافه کردن وضعیت برای ذخیره کیو آر کد
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -115,7 +114,7 @@ const Information = () => {
       }
       const data = await response.json();
       console.log(data);
-      setQrCode(data.qr_code_path)
+      setQrCode(data.qr_code_path);
       alert("حضور با موفقیت ثبت شد!");
     } catch (err) {
       alert(`خطا: ${err.message}`);
@@ -263,67 +262,78 @@ const Information = () => {
           marginTop: "120px", // اضافه کردن فاصله از بالا
         }}
       >
-        <Ivent onEventIdChange={setEventId} />
-        <select
-          value={attendanceCount}
-          onChange={(e) => setAttendanceCount(Number(e.target.value))}
-          style={{
-            margin: "20px 0",
-            padding: "10px",
-            fontSize: "19px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-            ...fontStyle, // اعمال استایل فونت
-          }}
-        >
-          <option value="" disabled>
-            تعداد مهمان
-          </option>
-          <option value={0}>0</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-        <button
-          onClick={handleRegisterAttendance}
-          className="ml-4 mr-4 px-6 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
-          style={{ marginTop: "20px" }}
-        >
-          ثبت نام
-        </button>
-      </div>
-
-      {/* نمایش کیو آر کد */}
-      {qrCode && (
-        <div
-          style={{
-            flex: "1",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            marginTop: "20px",
-          }}
-        >
-          <h2
+        {!qrCode ? (
+          <>
+            <Ivent onEventIdChange={setEventId} />
+            <select
+              value={attendanceCount}
+              onChange={(e) => setAttendanceCount(Number(e.target.value))}
+              style={{
+                margin: "20px 0",
+                padding: "10px",
+                fontSize: "19px",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+                ...fontStyle, // اعمال استایل فونت
+              }}
+            >
+              <option value="" disabled>
+                تعداد مهمان
+              </option>
+              <option value={0}>0</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+            <button
+              onClick={handleRegisterAttendance}
+              className="ml-4 mr-4 px-6 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
+              style={{ marginTop: "20px" }}
+            >
+              ثبت نام
+            </button>
+          </>
+        ) : (
+          <div
             style={{
-              fontSize: "22px",
-              marginBottom: "20px",
-              color: "#333",
-              ...fontStyle,
+              flex: "1",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              marginTop: "20px",
             }}
           >
-            کیو آر کد رویداد:
-          </h2>
-          <img
-            src={`http://185.208.175.233:5001/${qrCode}`}
-            alt="QR Code"
-            style={{ width: "200px", height: "200px" }}
-          />
-        </div>
-      )}
+            <h2
+              style={{
+                fontSize: "22px",
+                marginBottom: "20px",
+                color: "#333",
+                ...fontStyle,
+              }}
+            >
+              کیو آر کد شما:
+            </h2>
+            <img
+              src={`http://185.208.175.233:5001/${qrCode}`}
+              alt="QR Code"
+              style={{ width: "200px", height: "200px" }}
+            />
+            <h2
+              style={{
+                marginTop: "20px",
+                color: "#555",
+                fontSize: "18px",
+                ...fontStyle,
+              }}
+            >
+              لطفا این کیو آر کد را ذخیره کنید.
+            </h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
