@@ -36,7 +36,7 @@ const Ivent = () => {
             <h2 className="z-10  text-gray-400 text-3xl md:text-5xl font-BNazanin text-right">{title}</h2>
             <div className="absolute inset-0 flex justify-center items-center">
                 <div className="bg-gradient-to-b from-[#00B7FF] to-[#FF30FF] w-[80px] h-[300%] md:w-[100px] md:h-[380%] animate-rotateBG absolute"></div>
-                <div className="absolute inset-[5px] bg-[#DFF2EB] rounded-lg p-4 text-right">
+                <div className="absolute  inset-[5px] bg-[#DFF2EB] rounded-lg p-4 text-right">
                     <p className="text-lg md:text-xl text-right">{description}</p>
                     <p className="text-lg md:text-xl text-right">تاریخ: {date}</p>
                     <p className="text-lg md:text-xl text-right">مسئول: {person_in_charge}</p>

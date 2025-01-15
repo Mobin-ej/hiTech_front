@@ -9,7 +9,7 @@ const Footer = () => {
       </div>
 
       <nav className="flex flex-col items-end">
-        <div className="flex space-x-4 mr-9">
+        <div className="flex space-x-4 sm:mr-20 mr-6">
           {/* دکمه‌ها باقی ماندند */}
           <button className="Btn relative">
             <span className="svgContainer">

@@ -121,7 +121,7 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-xs mx-auto bg-gradient-to-b from-white to-gray-100 rounded-3xl p-6 border-4 border-white shadow-lg m-5 mt-40">
+    <div className="max-w-xs mx-auto bg-gradient-to-b from-white to-gray-100 rounded-3xl p-6 border-4 border-white shadow-lg m-5 mt-56">
       <Navbar />
       <div className="text-center font-black text-2xl text-[rgb(158,183,214)]">Login</div>
       <form className="mt-5" onSubmit={handleSubmit}>

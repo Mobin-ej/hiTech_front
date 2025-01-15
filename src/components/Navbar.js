@@ -71,7 +71,7 @@ const Navbar = () => {
         )}
 
 
-        <p className="font-BNazanin text-xl text-[#4A628A]">دورهمی های آی تی</p>
+        <p className="font-BNazanin text-xl mr-2 sm:mr-20 text-[#4A628A]"> های آی تی</p>
         <div className="flex mr-4 items-center justify-end sm:items-stretch sm:justify-start">
           <div className="flex-shrink-0">
             <img
