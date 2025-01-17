@@ -80,7 +80,7 @@
 // };
 
 // export default Login;
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
@@ -89,11 +89,26 @@ const Login = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState({ email: '', password: '' });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+
+    let validationErrors = {};
+    if (!email) {
+      validationErrors.email = 'لطفا ایمیل خود را وارد کنید';
+    }
+    if (!password) {
+      validationErrors.password = 'لطفا رمز عبور خود را وارد کنید';
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return; 
+    }
 
     try {
       const response = await fetch('http://185.208.175.233:5001/api/login', {
@@ -113,7 +128,6 @@ const Login = () => {
 
       localStorage.setItem('access_token', data.access_token);
 
-      // هدایت به صفحه Information پس از لاگین موفق
       navigate('/information');
     } catch (error) {
       console.error('Login error:', error);
@@ -131,19 +145,24 @@ const Login = () => {
           id="email"
           name="email"
           type="email"
-          className="w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[rgb(157,143,128)]"
+          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 ${
+            errors.email ? 'focus:ring-red-500' : 'focus:ring-[rgb(157,143,128)]'
+          }`}
         />
+        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+
         <input
           placeholder="Password"
           ref={passwordRef}
           id="password"
           name="password"
           type="password"
-          className="w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[rgb(157,143,128)]"
+          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 ${
+            errors.password ? 'focus:ring-red-500' : 'focus:ring-[rgb(157,143,128)]'
+          }`}
         />
-        {/* <span className="block mt-3 ml-3 text-xs text-blue-500">
-          <a href="#">Forgot Password?</a>
-        </span> */}
+        {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+
         <input
           value="Login"
           type="submit"

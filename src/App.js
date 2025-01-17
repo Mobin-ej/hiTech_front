@@ -22,11 +22,11 @@ function App() {
               <Navbar />
               <div className="flex-grow flex flex-col md:flex-row mt-60 sm:mt-32 w-screen justify-center items-center">
                 <Bnr />
-                <div className="flex-grow flex w-screen justify-center md:mr-7 mt-5">
+                <div className="flex-grow flex w-screen justify-center md:mr-10 mt-5">
                   <Ivent />
                 </div>
               </div>
-              <div className="mt-10 mb-10">
+              <div className="mt-10 mr-4 mb-10">
                 <Sbt />
               </div>
               <Footer />
