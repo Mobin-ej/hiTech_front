@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Form2() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    number: '',
-    city: '',
-    job: '',
-    education: '',
-    residence: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    number: "",
+    city: "",
+    job: "",
+    education: "",
+    residence: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -26,20 +27,21 @@ export default function Form2() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       if (!formData[key]) {
-        newErrors[key] = 'این فیلد باید پر شود';
+        newErrors[key] = "این فیلد باید پر شود";
       }
     });
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        const response = await fetch('http://185.208.175.233:5001/api/register', {
-          method: 'POST',
+        const response = await fetch("http://185.208.175.233:5001/api/register", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             name: formData.firstName,
@@ -55,15 +57,30 @@ export default function Form2() {
         });
 
         if (!response.ok) {
-          throw new Error('ثبت‌نام ناموفق بود');
+          throw new Error("ثبت‌نام ناموفق بود");
         }
 
-        alert('فرم با موفقیت ارسال شد!');
-        navigate('/login');
+        Swal.fire({
+          icon: "success",
+          title: "موفقیت",
+          text: "فرم با موفقیت ارسال شد!",
+          confirmButtonText: "باشه",
+        }).then(() => navigate("/login"));
       } catch (error) {
-        console.error(error);
-        alert('خطا در ارسال فرم. لطفاً دوباره تلاش کنید.');
+        Swal.fire({
+          icon: "error",
+          title: "خطا",
+          text: "خطا در ارسال فرم. لطفاً دوباره تلاش کنید.",
+          confirmButtonText: "تأیید",
+        });
       }
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "خطا در اعتبارسنجی",
+        text: "لطفاً تمامی فیلدهای الزامی را پر کنید.",
+        confirmButtonText: "باشه",
+      });
     }
   };
 
@@ -293,7 +310,7 @@ export default function Form2() {
             </button>
             <button
               type="button"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               className="w-[48%] py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
               ورود

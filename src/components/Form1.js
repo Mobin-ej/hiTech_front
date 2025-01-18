@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import Navbar from "./Navbar";
 
 export default function Form1() {
@@ -33,8 +34,16 @@ export default function Form1() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const isConfirmed = window.confirm("برای ثبت نام مطمئن هستید؟");
-      if (isConfirmed) {
+      const isConfirmed = await Swal.fire({
+        title: 'برای ثبت نام مطمئن هستید؟',
+        // text: "برای ثبت نام مطمئن هستید؟",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'بله',
+        cancelButtonText: 'خیر',
+      });
+
+      if (isConfirmed.isConfirmed) {
         try {
           const response = await fetch(
             `http://185.208.175.233:5001/register_event/${id}`,
@@ -61,13 +70,25 @@ export default function Form1() {
             console.log(data);
             setQrCode(data.qr_code_path); // ذخیره مسیر کیو آر کد
             setIsFormSubmitted(true); // فرم ارسال شد و کیو آر کد نمایش داده شود
-            alert("فرم با موفقیت ارسال شد!");
+            Swal.fire({
+              title: 'موفق!',
+              text: "فرم با موفقیت ارسال شد!",
+              icon: 'success',
+            });
           } else {
-            alert("خطا در ارسال فرم");
+            Swal.fire({
+              title: 'خطا!',
+              text: "خطا در ارسال فرم",
+              icon: 'error',
+            });
           }
         } catch (error) {
           console.log("Error:", error);
-          alert("خطا در ارسال فرم");
+          Swal.fire({
+            title: 'خطا!',
+            text: "خطا در ارسال فرم",
+            icon: 'error',
+          });
         }
       }
     }
@@ -107,6 +128,7 @@ export default function Form1() {
                 )}
               </div>
             </div>
+
           {/* Last Name */}
           <div>
             <label
@@ -247,8 +269,7 @@ export default function Form1() {
               )}
             </div>
           </div>
-          {/* Submit Button */}
-          <div>
+           <div>
               <button
                 type="submit"
                 className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"

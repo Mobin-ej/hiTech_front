@@ -99,15 +99,15 @@ const Login = () => {
 
     let validationErrors = {};
     if (!email) {
-      validationErrors.email = 'لطفا ایمیل خود را وارد کنید';
+      validationErrors.email = 'لطفاً ایمیل خود را وارد کنید';
     }
     if (!password) {
-      validationErrors.password = 'لطفا رمز عبور خود را وارد کنید';
+      validationErrors.password = 'لطفاً رمز عبور خود را وارد کنید';
     }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      return; 
+      return;
     }
 
     try {
@@ -137,34 +137,34 @@ const Login = () => {
   return (
     <div className="max-w-xs mx-auto bg-gradient-to-b from-white to-gray-100 rounded-3xl p-6 border-4 border-white shadow-lg m-5 mt-56">
       <Navbar />
-      <div className="text-center font-black text-2xl text-[rgb(158,183,214)]">Login</div>
+      <div className="text-center font-black text-2xl text-[rgb(158,183,214)]">ورود</div>
       <form className="mt-5" onSubmit={handleSubmit}>
         <input
-          placeholder="E-mail"
+          placeholder="ایمیل"
           ref={emailRef}
           id="email"
           name="email"
           type="email"
-          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 ${
+          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 text-right ${
             errors.email ? 'focus:ring-red-500' : 'focus:ring-[rgb(157,143,128)]'
           }`}
         />
         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
 
         <input
-          placeholder="Password"
+          placeholder="رمز عبور"
           ref={passwordRef}
           id="password"
           name="password"
           type="password"
-          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 ${
+          className={`w-full bg-white border-none p-4 rounded-2xl mt-4 shadow-md placeholder-gray-400 focus:outline-none focus:ring-2 text-right ${
             errors.password ? 'focus:ring-red-500' : 'focus:ring-[rgb(157,143,128)]'
           }`}
         />
         {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
 
         <input
-          value="Login"
+          value="ورود"
           type="submit"
           className="w-full font-bold bg-gradient-to-r from-[rgb(158,183,214)] to-cyan-500 text-white py-3 mt-5 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-200"
         />
