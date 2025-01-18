@@ -170,7 +170,7 @@ const Information = () => {
               borderRadius: "10px",
               textAlign: "right",
               direction: "rtl",
-              marginTop: "100px",
+              marginTop: "140px",
             }}
           >
             <h2
@@ -211,7 +211,7 @@ const Information = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                marginTop: "20px",
+                marginTop: "10px",
               }}
             >
               <button
@@ -259,7 +259,8 @@ const Information = () => {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          marginTop: "120px", // اضافه کردن فاصله از بالا
+          marginTop: "140px", // اضافه کردن فاصله از بالا
+          
         }}
       >
         {!qrCode ? (
@@ -269,7 +270,7 @@ const Information = () => {
               value={attendanceCount}
               onChange={(e) => setAttendanceCount(Number(e.target.value))}
               style={{
-                margin: "20px 0",
+                margin: "20px ",
                 padding: "10px",
                 fontSize: "19px",
                 borderRadius: "5px",
@@ -290,7 +291,7 @@ const Information = () => {
             <button
               onClick={handleRegisterAttendance}
               className="ml-4 mr-4 px-6 py-1 font-BNazanin text-[#4A628A] text-xl border-2 bg-[#B9E5E8] rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 active:scale-90"
-              style={{ marginTop: "20px" }}
+              style={{ marginTop: "5px", marginBottom:"10px" }}
             >
               ثبت نام
             </button>
