@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2"; // وارد کردن sweetalert2
 import Navbar from "./Navbar";
 import Ivent from "./Ivent";
 import { useNavigate } from "react-router-dom";
@@ -82,7 +83,11 @@ const Information = () => {
 
   const handleRegisterAttendance = async () => {
     if (!eventId) {
-      alert("هیچ رویدادی انتخاب نشده است.");
+      Swal.fire({
+        icon: 'error',
+        title: 'خطا',
+        text: 'هیچ رویدادی انتخاب نشده است.',
+      });
       return;
     }
     try {
@@ -115,9 +120,17 @@ const Information = () => {
       const data = await response.json();
       console.log(data);
       setQrCode(data.qr_code_path);
-      alert("حضور با موفقیت ثبت شد!");
+      Swal.fire({
+        icon: 'success',
+        title: 'موفقیت',
+        text: 'حضور با موفقیت ثبت شد!',
+      });
     } catch (err) {
-      alert(`خطا: ${err.message}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'خطا',
+        text: `خطا: ${err.message}`,
+      });
     }
   };
 
