@@ -16,6 +16,7 @@ export default function Form2() {
     education: "",
     residence: "",
     password: "",
+    confirmPassword: "",  // فیلد جدید برای تایید رمز عبور
   });
 
   const [errors, setErrors] = useState({});
@@ -30,10 +31,16 @@ export default function Form2() {
 
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
-      if (!formData[key]) {
+      if (!formData[key] && key !== "confirmPassword") {
         newErrors[key] = "این فیلد باید پر شود";
       }
     });
+
+    // بررسی تطابق رمز عبور با تایید رمز عبور
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "رمز عبور صحیح نیست";
+    }
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
@@ -63,7 +70,7 @@ export default function Form2() {
         Swal.fire({
           icon: "success",
           title: "موفقیت",
-          text: "فرم با موفقیت ارسال شد!",
+          text: "عضویت با موفقت ثبت شد",
           confirmButtonText: "باشه",
         }).then(() => navigate("/login"));
       } catch (error) {
@@ -77,7 +84,7 @@ export default function Form2() {
     } else {
       Swal.fire({
         icon: "warning",
-        title: "خطا در اعتبارسنجی",
+        title: "خطا ",
         text: "لطفاً تمامی فیلدهای الزامی را پر کنید.",
         confirmButtonText: "باشه",
       });
@@ -299,22 +306,46 @@ export default function Form2() {
               )}
             </div>
           </div>
+          
 
-           {/* دکمه ورود و عضویت */}
-           <div className="flex justify-between">
+     {/* فیلد تکرار رمز عبور */}
+     <div>
+            <label
+              htmlFor="confirmPassword"
+              className="block text-xl font-BNazanin font-medium text-gray-900 text-right"
+            >
+              تکرار رمز عبور <span className="text-red-500">*</span>
+            </label>
+            <div className="mt-2">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 text-right"
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+              )}
+            </div>
+          </div>
+
+          {/* دکمه‌ها مشابه قبل */}
+          <div className="flex justify-between">
             <button
               type="submit"
-              className="w-[48%] py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
+              className="w-full py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
               عضویت
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={() => navigate("/login")}
               className="w-[48%] py-2 px-4 text-white rounded-md bg-[#7AB2D3] hover:bg-[#6A9BC2] text-xl font-BNazanin"
             >
               ورود
-            </button>
+            </button> */}
           </div>
         </div>
       </form>

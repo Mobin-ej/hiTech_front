@@ -9,10 +9,10 @@ const Footer = () => {
           <button className="Btn relative">
             <span className="svgContainer">
               <img
-               src="/19.png" // آدرس تصویر در پوشه public
+               src="/icons8-telegram-app-2048.png" // آدرس تصویر در پوشه public
                alt="GraFa Logo"
                className="svgIcontwit"
-               style={{ height: '1.9em' }}
+               style={{ height: '2em' }}
               />
                 {/* <path
                   fill="white"

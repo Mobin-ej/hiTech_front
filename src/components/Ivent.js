@@ -38,16 +38,16 @@ const Ivent = () => {
     const { title, description, date, person_in_charge, time, address } = eventData;
 
     return (
-        <div className="card relative flex items-center justify-center w-[90%] md:w-[80%] h-[200px] md:h-[254px] overflow-hidden rounded-2xl">
-            <h2 className="z-10 text-gray-400 text-3xl md:text-5xl font-BNazanin text-right">{title}</h2>
+        <div className="card relative flex items-center justify-center w-[97%] md:w-[80%] h-[250px] md:h-[254px] overflow-hidden rounded-2xl">
+            <h2 className="z-10 text-gray-400 text-2xl md:text-3xl font-BNazanin text-right absolute top-4 ">{title}</h2>
             <div className="absolute inset-0 flex justify-center items-center">
-                <div className="bg-gradient-to-b from-[#00B7FF] to-[#FF30FF] w-[80px] h-[300%] md:w-[100px] md:h-[380%] animate-rotateBG absolute"></div>
-                <div className="absolute font- inset-[5px] bg-[#DFF2EB] rounded-lg p-4  text-right">
-                    <p className="text-lg md:text-xl mb-1 text-right">{description}</p>
-                    <p className="text-lg md:text-xl mb-1 text-right">تاریخ: {date}</p>
-                    <p className="text-lg md:text-xl mb-1 text-right">مسئول: {person_in_charge}</p>
-                    <p className="text-lg md:text-xl mb-1 text-right">زمان: {time}</p>
-                    <p className="text-lg md:text-xl mb-1 text-right">آدرس: {address}</p>
+            <div className="bg-gradient-to-b from-[#00B7FF] via-[#c0dcc4] to-[#ff0000] w-[500px] h-[300%] md:w-[600px] md:h-[380%] animate-rotateBG absolute"></div>
+                <div className="absolute font- inset-[5px] bg-[#ffffff] rounded-lg p-4    text-right">
+                    <p className="text-lg md:text-xl mt-8  text-right">{description}</p>
+                    <p className="text-lg md:text-xl text-right">تاریخ: {date}</p>
+                    <p className="text-lg md:text-xl text-right">مسئول: {person_in_charge}</p>
+                    <p className="text-lg md:text-xl text-right">زمان: {time}</p>
+                    <p className="text-lg md:text-xl text-right">آدرس: {address}</p>
                 </div>
             </div>
         </div>
